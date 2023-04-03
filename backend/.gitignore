@@ -1,0 +1,12 @@
+# Ignorar arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos gerados pela linguagem de programação
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorar arquivos de configuração
+.env
+
