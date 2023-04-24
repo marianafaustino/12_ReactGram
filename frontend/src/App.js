@@ -1,10 +1,13 @@
 
 import './App.css';
+import Navbar from './components/Navbar';
+import Cadastrar from './routes/Cadastrar';
 
 function App() {
   return (
     <div className="App">
-     <h1>ReactGram</h1>
+     <Navbar/>
+     <Cadastrar/>
     </div>
   );
 }
