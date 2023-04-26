@@ -1,3 +1,4 @@
+import { useFetch } from "../hooks/useFetch"
 import "../routes/Cadastrar.css"
 import {useEffect, useState} from "react"
 
@@ -7,6 +8,8 @@ const FormCadastrar = () => {
     const [senha, setSenha] = useState("")
     const [confirmaSenha, setConfirmaSenha] = useState("")
     const [formError, setFormError] = useState([])
+
+    const { data, error, runFetch } = useFetch()
 
     const enviarFormulário = (e)=>{
         e.preventDefault()
@@ -26,40 +29,23 @@ const FormCadastrar = () => {
         }
 
         setFormError(erros)
+        if(erros.length){
+           return
+        }
 
-        const registroUsuario = {
+     
+        runFetch({ url: '/users/register',  method:'POST', body: {
             name: nome,
             email: email,
             password: senha,
             confirmpassword: confirmaSenha
-        }
-
-        const postUsuario = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(registroUsuario)
-        }
-
-        fetch('http://localhost:5000/api/users/register', postUsuario)
-        .then(async (data) => {
-            const response = await  data.json()
-            if(response?.errors?.length){
-                setFormError(response.errors)
-            }else{
-                setFormError([])
-            }
-            if(!data.ok){
-                throw Error(data.status)
-            }
-            return response
-        }).then(registroUsuario =>{
-            console.log(registroUsuario)
-        }).catch(e => {
-            console.log(e)
-        })
+         }
+       })
     }
+
+    useEffect(()=> {
+        setFormError(error)
+    }, [error])
     
 
   return (
