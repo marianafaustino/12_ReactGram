@@ -5,7 +5,9 @@ const Navbar = () => {
     <div>
       <header>
       <div className="ReactGram" >ReactGram</div>
-      <div className="Cadastrar">Cadastrar</div>
+      <div className="Cadastrar">
+        <span>Entrar</span>
+      Cadastrar</div>
      </header>
     </div>
   )

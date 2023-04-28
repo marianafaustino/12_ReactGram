@@ -10,6 +10,8 @@ body{
     padding: 5px;
     color: #f2f2f2;
     font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
 }
 
 .erro{
@@ -18,3 +20,15 @@ body{
     padding: 20px;
     border-radius: 5px;
 }
+
+
+.input{
+    display: block;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    border: 1,5px solid #737373;
+    color: #a6a6a6;
+    background-color: #404040;
+} 

@@ -1,37 +1,5 @@
-.cadastrar{
-    padding-top: 100px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    background-color: #404040;
-   
-}
 
 form{
     padding: 10px;
-    border: 2px solid #737373;
-    background-color: #0d0d0d;
+    
 }
-
-.titleForm{
-    color: #f2f2f2;
-}
-
-.input{
-    display: block;
-    margin: 5px;
-    border-radius: 5px;
-    padding: 10px;
-    width: 90%;
-    border: 1,5px solid #737373;
-    color: #a6a6a6;
-    background-color: #404040;
-} 
-
-.btn-submit{
-    margin-top: 10px;
-    display: inline-block;
-}
-
