@@ -9,7 +9,7 @@ const FormCadastrar = () => {
     const [confirmaSenha, setConfirmaSenha] = useState("")
     const [formError, setFormError] = useState([])
 
-    const { data, error, runFetch } = useFetch()
+    const { error, runFetch } = useFetch()
 
     const enviarFormulário = (e)=>{
         e.preventDefault()
@@ -34,7 +34,7 @@ const FormCadastrar = () => {
         }
 
      
-        runFetch({ url: '/users/register',  method:'POST', body: {
+        runFetch({ url: '/users/register',  metodo:'POST', body: {
             name: nome,
             email: email,
             password: senha,
