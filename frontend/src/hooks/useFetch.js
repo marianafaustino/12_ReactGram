@@ -31,7 +31,8 @@ export const useFetch = () =>{
         fetch('http://localhost:5000/api' + url, fetchParametros)
         .then(async(data)=>{
             if(data.ok){
-            return setDados(data.json())
+                const json = await data.json()
+             setDados(json)
             } else{
                const erro = await data.json()
                setError(erro.errors)

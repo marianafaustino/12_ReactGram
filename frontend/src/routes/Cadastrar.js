@@ -4,6 +4,8 @@ import Input from "../form/Input"
 import { useFetch } from "../hooks/useFetch"
 import "../routes/Cadastrar.css"
 import {useEffect, useState} from "react"
+import { useAuthValue } from "../context/AuthContext"
+import {useNavigate} from 'react-router-dom'
   
 
 const Cadastrar = () => {
@@ -12,8 +14,12 @@ const Cadastrar = () => {
       const [senha, setSenha] = useState("")
       const [confirmaSenha, setConfirmaSenha] = useState("")
       const [formError, setFormError] = useState([])
+
+      const {tokenUser, setTokenUser} = useAuthValue()
   
-      const { error, runFetch } = useFetch()
+      const { error, runFetch, dados } = useFetch()
+
+      const navigate = useNavigate()
   
       const enviarFormulário = (e)=>{
           e.preventDefault()
@@ -23,10 +29,10 @@ const Cadastrar = () => {
           if(!nome || !email || !senha || !confirmaSenha){
               erros.push("Preencha todos os campos")
   
-          }  if(nome.length <= 3){
+          }  if(nome.length < 3){
               erros.push("O nome precisa ter mais de 3 caracteres")
   
-          }  if(senha.length < 6 || confirmaSenha.length < 6){
+          }  if(senha.length < 6 || confirmaSenha.length < 5){
               erros.push("A senha precisa ter no mínimo 6 caracteres")
           }  if(confirmaSenha != senha){
               erros.push("As senhas precisam ser iguais")
@@ -50,7 +56,15 @@ const Cadastrar = () => {
       useEffect(()=> {
           setFormError(error)
       }, [error])
-      
+
+      useEffect(()=>{
+        if(dados != undefined){
+            setTokenUser(dados.token)
+            navigate("/")
+
+        }
+        
+      },[dados])
   
     return (
       <Box title='ReactGram'
