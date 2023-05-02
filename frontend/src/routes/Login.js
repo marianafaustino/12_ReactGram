@@ -12,6 +12,7 @@ const Login = () => {
     title='ReactGram'
     subtitle='Faça o login para ver o que há de novo.'
     msgRedirect='Não tem uma conta?'
+    linkRedirect='http://localhost:3000/register'
     width='50%'
     height='50%'>
 

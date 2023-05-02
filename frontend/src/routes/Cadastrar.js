@@ -58,6 +58,7 @@ const Cadastrar = () => {
       width='50%'
       height='50%'
       msgRedirect='Já tem conta?'
+      linkRedirect='http://localhost:3000/login'
       >
           <form onSubmit={enviarFormulário}>
          
