@@ -1,6 +1,9 @@
 import "./Box.css"
+import {useNavigate} from 'react-router-dom'
 
 const Box = ({children, title, subtitle, width, height, msgRedirect, linkRedirect}) => {
+
+  const navigate = useNavigate()
   return (
     <div className="box" style={{width, height}}>
        <div className='box-title'>
