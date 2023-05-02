@@ -57,6 +57,7 @@ const Cadastrar = () => {
       subtitle='Cadastre-se para ver as fotos dos seus amigos'
       width='50%'
       height='50%'
+      msgRedirect='Já tem conta?'
       >
           <form onSubmit={enviarFormulário}>
          

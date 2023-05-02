@@ -1,6 +1,6 @@
 import "./Box.css"
 
-const Box = ({children, title, subtitle, width, height}) => {
+const Box = ({children, title, subtitle, width, height, msgRedirect, linkRedirect}) => {
   return (
     <div className="box" style={{width, height}}>
        <div className='box-title'>
@@ -10,7 +10,7 @@ const Box = ({children, title, subtitle, width, height}) => {
            <div className="box-content">
            {children}
             </div>     
-     
+     <p className="box-redirect">{msgRedirect} <a href={linkRedirect}>Clique aqui.</a></p>
     </div>
   )
 }

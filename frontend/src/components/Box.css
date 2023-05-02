@@ -17,3 +17,12 @@
     justify-content: center;
     display: flex;
 }
+
+.box-redirect{
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+.box-redirect a{
+    color: #073bd9;
+}
