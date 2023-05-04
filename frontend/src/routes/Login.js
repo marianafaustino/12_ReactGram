@@ -3,6 +3,8 @@ import Box from '../components/Box'
 import Input from '../form/Input'
 import { useFetch } from '../hooks/useFetch'
 import ButtonSubmit from '../form/ButtonSubmit'
+import {useNavigate} from 'react-router-dom'
+import {useAuthValue} from '../context/AuthContext'
 
 const Login = () => {
 
@@ -10,7 +12,11 @@ const Login = () => {
   const [senha, setSenha] = useState("")
   const [formError, setFormError] = useState([])
 
-  const {error,runFetch} = useFetch()
+  const {dados, error,runFetch} = useFetch()
+
+  const {tokenUser, setTokenUser} = useAuthValue()
+
+  const navigate = useNavigate()
 
   const enviarFormulário = (e)=>{
     e.preventDefault()
@@ -41,7 +47,14 @@ const Login = () => {
       setFormError(error)
     }, [error])
 
+    useEffect(()=>{
+      if(dados != undefined){
+          setTokenUser(dados.token)
+          navigate("/")
 
+      }
+      
+    },[dados])
 
   return (
     <Box

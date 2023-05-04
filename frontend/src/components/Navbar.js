@@ -1,7 +1,14 @@
+import { useAuthValue } from "../context/AuthContext"
 import "./Navbar.css"
-import {NavLink} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 
 const Navbar = () => {
+
+  const {tokenUser, setTokenUser} = useAuthValue()
+
+  const navigate = useNavigate()
+
+
   return (
     <nav className='navbar'>
       <NavLink to="/" className='brand'>
@@ -19,7 +26,16 @@ const Navbar = () => {
         <li>
         <NavLink to="/register">Cadastrar</NavLink>
         </li>
-     
+
+        {tokenUser && <li>
+        
+          <button className="btn-nav" onClick={()=> {
+            setTokenUser(undefined)
+            navigate('/login')
+            }}>Sair</button>
+          
+          </li>}
+
       </ul>
     </nav>
   )
