@@ -57,25 +57,24 @@ const login = async (req, res)=>{
     
     const {email, password} = req.body
 
-    const user = await User.findOne({email})
+    const {password: userpass, ...rest } = await User.findOne({email})
 
     // Checando se o usuário existe
-    if(!user){
+    if(!rest){
         res.status(404).json({errors: ["Usuário não encontrado!"]})
         return
     }
 
     // Checar se a senha que o usuário mandou combina com a senha do usuário
-    if(!(await bcrypt.compare(password, user.password))){
+    if(!(await bcrypt.compare(password, userpass))){
         res.status(422).json({errors: ["A senha é inválida."]})
         return
     }
 
     // Retornando usuário com token
     res.status(201).json({
-        _id: user._id,
-        profileImage: user.profileImage,
-        token: generateToken(user._id)
+        name: rest._doc.name,
+        token: generateToken(rest._id)
 
     })
 }
