@@ -14,7 +14,7 @@ const Login = () => {
 
   const {dados, error,runFetch} = useFetch()
 
-  const {tokenUser, setTokenUser} = useAuthValue()
+  const {user, setUser, setTokenUser} = useAuthValue()
 
   const navigate = useNavigate()
 
@@ -50,6 +50,8 @@ const Login = () => {
     useEffect(()=>{
       if(dados != undefined){
           setTokenUser(dados.token)
+          setUser({name: dados.name})
+          console.log(dados)
           navigate("/")
 
       }

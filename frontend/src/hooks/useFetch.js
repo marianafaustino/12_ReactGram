@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { useAuthValue } from "../context/AuthContext"
 
 export const useFetch = () =>{
 
     const [dados, setDados] = useState()
     const [error, setError] = useState([])
     const [loading, setLoading] = useState(true)
+    const {tokenUser} = useAuthValue()
 
     const runFetch = ({url, metodo, body})=>{
 
@@ -15,7 +17,8 @@ export const useFetch = () =>{
             fetchParametros = {
                 method: metodo,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + tokenUser
                 },
                 body: JSON.stringify(body)
             }  
@@ -23,7 +26,8 @@ export const useFetch = () =>{
             fetchParametros = {
                 method: metodo,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + tokenUser
                 }
         }}
 
