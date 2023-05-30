@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const insertPhoto = async(req,res)=>{
 
     const {title} = req.body
-    const image = req.file.filename
+    const image = req.body.image
 
     const reqUser = req.user
 
