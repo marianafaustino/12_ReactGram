@@ -29,6 +29,12 @@ const Navbar = () => {
 
         {tokenUser && <li>
         
+        <NavLink to="/post">Novo Post</NavLink>
+        
+        </li>}
+
+        {tokenUser && <li>
+        
           <button className="btn-nav" onClick={()=> {
             setTokenUser(undefined)
             navigate('/login')
