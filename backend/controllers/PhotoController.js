@@ -8,10 +8,10 @@ const insertPhoto = async(req,res)=>{
 
     const {title} = req.body
     const image = req.body.image
+    const userId = req.body.userId
+    console.log(req)
 
-    const reqUser = req.user
-
-    const user = await User.findById(reqUser._id)
+    const user = await User.findById(userId)
 
     // Criando uma foto
     const newPhoto = await Photo.create({

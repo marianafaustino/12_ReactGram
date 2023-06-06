@@ -74,6 +74,7 @@ const login = async (req, res)=>{
     // Retornando usuário com token
     res.status(201).json({
         name: rest._doc.name,
+        userId: rest._doc._id,
         token: generateToken(rest._id)
 
     })

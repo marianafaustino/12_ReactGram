@@ -2,13 +2,11 @@ import { useState } from "react"
 import { useAuthValue } from "../context/AuthContext"
 
 export const useFetch = () =>{
-
-    const [dados, setDados] = useState()
-    const [error, setError] = useState([])
     const [loading, setLoading] = useState(true)
     const {tokenUser} = useAuthValue()
+    
 
-    const runFetch = ({url, metodo, body})=>{
+    const runFetch = ({url, metodo, body,formData, onSucess, onError})=>{
 
         let fetchParametros = {}
 
@@ -17,12 +15,12 @@ export const useFetch = () =>{
             fetchParametros = {
                 method: metodo,
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type':  body ? 'application/json' : '',
                     'Authorization': 'Bearer ' + tokenUser
                 },
-                body: JSON.stringify(body)
+                body: body ? JSON.stringify(body) : formData 
             }  
-        } else{
+        }else{
             fetchParametros = {
                 method: metodo,
                 headers: {
@@ -36,10 +34,10 @@ export const useFetch = () =>{
         .then(async(data)=>{
             if(data.ok){
                 const json = await data.json()
-             setDados(json)
+                onSucess(json)
             } else{
                const erro = await data.json()
-               setError(erro.errors)
+               onError(erro.errors)
             }
         }).catch(e =>{
             const erroSistema = []
@@ -48,15 +46,13 @@ export const useFetch = () =>{
             } else{
             erroSistema.push(e.message)
             }
-            return setError(erroSistema)
+             onError(erroSistema)
 
         }).finally(setLoading(false))
     }
 
     return{
         runFetch,
-        dados,
-        error,
         loading
 
     }

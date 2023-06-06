@@ -12,9 +12,9 @@ const Login = () => {
   const [senha, setSenha] = useState("")
   const [formError, setFormError] = useState([])
 
-  const {dados, error,runFetch} = useFetch()
+  const {runFetch} = useFetch()
 
-  const {user, setUser, setTokenUser} = useAuthValue()
+  const { setUser, setTokenUser} = useAuthValue()
 
   const navigate = useNavigate()
 
@@ -36,28 +36,31 @@ const Login = () => {
     }
 
  
-    runFetch({ url: '/users/login',  metodo:'POST', body: {
+    runFetch({ 
+      url: '/users/login',  
+      metodo:'POST', 
+      onSucess: onSucessLogin, 
+      onError: onErrorLogin, 
+      body: {
         email: email,
         password: senha
       }
     })
   }
 
-    useEffect(()=> {
-      setFormError(error)
-    }, [error])
+  const onSucessLogin = (dados)=> {
+    if(dados != undefined){
+      setTokenUser(dados.token)
+      setUser({name: dados.name, userId: dados.userId})
+      navigate("/")
+  }
+  }
 
-    useEffect(()=>{
-      if(dados != undefined){
-          setTokenUser(dados.token)
-          setUser({name: dados.name})
-          console.log(dados)
-          navigate("/")
+  const onErrorLogin = (error)=> {
+    setFormError(error)
+  }
 
-      }
-      
-    },[dados])
-
+ 
   return (
     <Box
     title='ReactGram'

@@ -8,7 +8,13 @@ const Input = ({type, id, placeholder, onChange}) => {
             placeholder={placeholder}
             required 
             className='input'
-            onChange={(e)=> onChange(e.target.value)}/>
+            onChange={(e)=> {
+              if(type === "file"){
+                onChange(e.target.files[0])
+              }else{
+                onChange(e.target.value)
+              }
+            }}/>
     </label>
   )
 }
