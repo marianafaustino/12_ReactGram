@@ -2,7 +2,7 @@ import './Auth.css'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div id='login'>Login</div>
   )
 }
 
